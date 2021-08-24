@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,6 +54,34 @@ text-align: center;
 color: white;
 line-height: 1.5;
 }
+
+#tach {
+position: fixed;
+top: 20px;
+left: 140px;
+width: 200px;
+height: 100px;
+background: rgba(0, 0, 0, 0.29);
+}
+#tachometer {
+position: absolute;
+bottom: 5px;
+left: 5px;
+width: 190px;
+background: rgba(0, 0, 0, 0.39);
+border: none;
+height: 20px;
+transition: width 5s, background 3s;
+}
+#rpm {
+position: absolute;
+top: 0px;
+left: 0px;
+width: 100%;
+text-align: center;
+color: white;
+line-height: 1.5;
+}
 </style>
 </head>
 <body>
@@ -62,11 +91,16 @@ line-height: 1.5;
 <button id="speedometer"></button>
 <p id="mph">65 <br> MPH</p>
 </div>
+<div id="tach">
+<button id="tachometer"></button>
+<p id="rpm">RPM x 1000 <br> 1 2 3 4 <span style="color:black;">5 6</span></p>
+</div>
 <script>
 var car = document.getElementById("car");
 var mph = document.getElementById("mph");
 var speedometer = document.getElementById("speedometer");
 var road = document.getElementById("road");
+var tachometer = document.getElementById("tachometer");
 
 document.body.onkeyup = function(e){  
     if (e.keyCode == 37) {
@@ -87,6 +121,7 @@ function speed() {
 var random = Math.floor(Math.random() * 30);
 mph.innerHTML = random + 50 + "<br>MPH";
 speedometer.style.width = mph.innerHTML.split("<br>")[0] + "%";
+tachometer.style.width = mph.innerHTML.split("<br>")[0] + "%";
   if (speedometer.style.width.split("%")[0] < 60) {
     speedometer.style.background = "green";
   } else if (speedometer.style.width.split("%")[0] > 70) {
