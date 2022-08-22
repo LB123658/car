@@ -1,4 +1,15 @@
 <script>
-  document.write(window.innerWidth + " x " + window.innerHeight);
-  alert("You are using " + navigator.platform);
+  var loc;
+  if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(showPosition);
+} else {
+  var loc = "Location: unknown";
+}
+function showPosition(position) {
+  var loc = "Location: (Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
+}
+  document.write("Screen size: " + window.innerWidth + "px x " + window.innerHeight + "px<br>Device: " + navigator.platform + "<br>Browser: " + navigator.appVersion + "<br>" + loc);
+  document.body.style.fontFamily = "monospace";
+  document.body.style.background = "black";
+  document.body.style.color = "white";
 </script>
